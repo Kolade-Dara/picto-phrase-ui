@@ -1,4 +1,3 @@
-import React from "react";
 import AvatarSection from "../components/profile/AvatarSection";
 import RankCard from "../components/profile/RankCard";
 
