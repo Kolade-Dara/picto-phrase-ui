@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 
 const App = () => {
+  console.log("App render");
   return (
     <div>
       <nav className="p-4 bg-gray-200">
