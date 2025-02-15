@@ -6,7 +6,7 @@ interface RankCardProps {
   percentage: number;
   answered: number;
   total: number;
-  gradientClass?: string; // e.g. "bg-gradient-to-b from-green-100 to-green-50"
+  gradientClass?: string;
 }
 
 const RankCard: FC<RankCardProps> = ({
@@ -18,12 +18,18 @@ const RankCard: FC<RankCardProps> = ({
   gradientClass = "bg-gradient-to-b from-white to-pink-100",
 }) => {
   return (
-    <div className={`rounded-md p-4 text-center shadow-sm ${gradientClass}`}>
+    <div
+      className={`mx-auto w-full max-w-xs rounded-xl p-6 text-center shadow-lg ${gradientClass} flex flex-col items-center gap-3`}
+    >
       <p className="text-sm text-gray-600">Current rank</p>
-      <img src={iconUrl} alt={rank} className="mx-auto my-2 h-12 w-12" />
-      <h2 className="text-xl font-bold">{rank}</h2>
-      <p className="text-lg font-medium">{percentage}%</p>
-      <p className="mt-2 text-xs text-gray-500">
+      <img
+        src={iconUrl}
+        alt={rank}
+        className="h-12 w-12 md:h-16 md:w-16 object-contain"
+      />
+      <h2 className="text-xl md:text-2xl font-titan font-bold">{rank}</h2>
+      <p className="text-lg md:text-xl font-medium">{percentage}%</p>
+      <p className="mt-1 text-xs md:text-sm text-gray-500">
         {answered} of {total} Questions answered
       </p>
     </div>

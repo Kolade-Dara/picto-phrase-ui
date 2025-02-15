@@ -15,7 +15,7 @@ const AvatarSection: FC<AvatarSectionProps> = ({
 }) => {
   return (
     <div className="flex flex-col items-center gap-2 p-4 bg-white">
-      <Avatar className="h-20 w-20">
+      <Avatar className="h-40 w-40 border-2 border-[#f7f7f7] rounded-full">
         <AvatarImage src={avatarUrl} />
         <AvatarFallback>DO</AvatarFallback>
       </Avatar>
