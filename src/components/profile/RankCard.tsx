@@ -25,9 +25,11 @@ const RankCard: FC<RankCardProps> = ({
       <img
         src={iconUrl}
         alt={rank}
-        className="h-12 w-12 md:h-16 md:w-16 object-contain"
+        className="h-20 w-20 md:h-16 md:w-16 object-contain"
       />
-      <h2 className="text-xl md:text-2xl font-titan font-bold">{rank}</h2>
+      <h2 className="text-xl md:text-2xl font-titan font-bold text-white">
+        {rank}
+      </h2>
       <p className="text-lg md:text-xl font-medium">{percentage}%</p>
       <p className="mt-1 text-xs md:text-sm text-gray-500">
         {answered} of {total} Questions answered

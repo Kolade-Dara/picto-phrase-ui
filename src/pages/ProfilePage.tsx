@@ -29,7 +29,7 @@ const ProfilePage = () => {
           percentage={70}
           answered={1098}
           total={2333}
-          gradientClass="bg-gradient-to-b from-[#FAF6C3] to-[#FDC3D1]"
+          gradientClass="bg-gradient-to-b from-[#FFF894FF] to-[#C6647BFF]"
         />
       </div>
       <div className="mb-8 w-full max-w-md">
