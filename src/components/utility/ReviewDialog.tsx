@@ -85,7 +85,7 @@ const ReviewDialog: FC<ReviewDialogProps> = ({
           <p>{categories}</p>
         </div>
 
-        <DialogFooter>
+        <DialogFooter className="gap-2">
           <Button variant="default" onClick={handleSubmit}>
             Upload Puzzle
           </Button>
