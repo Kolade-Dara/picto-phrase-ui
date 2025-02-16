@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FC } from "react";
 import { ArrowLeft } from "lucide-react"; // or any icon you prefer
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -16,48 +17,49 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({
   title = "Picto Phrase",
   showBackButton = false,
-  onBack,
   showHintCoin = false,
   hintIconUrl,
-  onHintClick,
+
   showAvatar = false,
   avatarUrl,
-  onAvatarClick,
 }) => {
   return (
-    <header className="flex items-center justify-between p-4 bg-white shadow-sm w-full">
+    <header className="flex items-center justify-between p-4 w-full">
       {/* Left Section */}
       <div className="flex items-center gap-4">
         {showBackButton && (
-          <button onClick={onBack} aria-label="Go Back">
-            <ArrowLeft className="h-6 w-6" />
-          </button>
+          <Link to="/" aria-label="Buy Hint Coins">
+            <ArrowLeft className="h-10 w-10" />
+          </Link>
         )}
+
         {showHintCoin && (
-          <img
-            onClick={onHintClick}
-            src={hintIconUrl}
-            alt="Hint coin"
-            className="h-12 w-12 object-contain"
-          />
+          <Link to="/buycoins" aria-label="Buy Hint Coins">
+            <img
+              src={hintIconUrl}
+              alt="Hint coin"
+              className="h-10 w-10 object-contain"
+            />
+          </Link>
         )}
       </div>
 
       {/* Title */}
-      <h1 className="text-xl font-bold font-titan text-center flex-1">
-        {title}
-      </h1>
+      <Link to="/" aria-label="Buy Hint Coins" className="text-black">
+        <h1 className="flex-1 text-center  align-self-center font-titan text-2xl font-bold">
+          {title}
+        </h1>
+      </Link>
 
       {/* Right Section */}
-      <div className="flex items-center justify-end w-16">
+      <div className="flex w-16 items-center justify-end">
         {showAvatar && (
-          <Avatar
-            onClick={onAvatarClick}
-            className="h-12 w-12 border-2 border-[#f7f7f7] rounded-full"
-          >
-            <AvatarImage src={avatarUrl} />
-            <AvatarFallback>DO</AvatarFallback>
-          </Avatar>
+          <Link to="/profile" aria-label="User Profile">
+            <Avatar className="h-8 w-8">
+              <AvatarImage src={avatarUrl} />
+              <AvatarFallback>?</AvatarFallback>
+            </Avatar>
+          </Link>
         )}
       </div>
     </header>

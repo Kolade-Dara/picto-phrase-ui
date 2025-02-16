@@ -19,7 +19,7 @@ const RankCard: FC<RankCardProps> = ({
 }) => {
   return (
     <div
-      className={`mx-auto w-full max-w-xs rounded-xl p-6 text-center shadow-lg ${gradientClass} flex flex-col items-center gap-3`}
+      className={` w-full max-w-xs rounded-xl p-6 text-center shadow-lg ${gradientClass} flex flex-col items-center gap-3`}
     >
       <p className="text-sm text-gray-600">Current rank</p>
       <img

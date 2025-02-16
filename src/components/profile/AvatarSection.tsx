@@ -14,7 +14,7 @@ const AvatarSection: FC<AvatarSectionProps> = ({
   onEdit,
 }) => {
   return (
-    <div className="flex flex-col items-center gap-2 p-4 bg-white">
+    <div className="flex flex-col items-center gap-2 p-4">
       <Avatar className="h-40 w-40 border-2 border-[#f7f7f7] rounded-full">
         <AvatarImage src={avatarUrl} />
         <AvatarFallback>DO</AvatarFallback>

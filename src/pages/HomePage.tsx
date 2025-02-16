@@ -9,7 +9,7 @@ const HomePage = () => {
   const [answer, setAnswer] = useState("");
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FCFCFC] items-center">
+    <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">
       <Header
         showHintCoin
         onHintClick={() => console.log("Hint clicked")}
@@ -19,14 +19,14 @@ const HomePage = () => {
         onAvatarClick={() => console.log("Avatar clicked")}
       />
 
-      <main className="p-6 flex flex-col items-center justify-center gap-4">
+      <main className="flex flex-col items-center justify-center p-6 gap-4 [@media(min-width:802px)]:flex-row">
         <PuzzleDisplay puzzleUrl="/images/Pictor grams.png" altText="Puzzle" />
         <AnswerForm
           value={answer}
           onChange={setAnswer}
           onHint={() => console.log("Hint clicked")}
           onSubmit={() => console.log("Submit")}
-          variant="hint"
+          variant="default"
           message="Hint – This shows the hint the user has selected"
         />
       </main>
