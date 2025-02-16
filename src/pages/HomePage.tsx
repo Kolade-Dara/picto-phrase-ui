@@ -7,7 +7,17 @@ import UseHintDialog from "@/components/utility/UseHintDialog";
 const HomePage = () => {
   // Manage the answer state
   const [answer, setAnswer] = useState("");
+
   const [showHintDialog, setShowHintDialog] = useState(false);
+  const [answerVariant, setAnswerVariant] = useState<
+    "default" | "hint" | "error"
+  >("default");
+  const [answerMessage, setAnswerMessage] = useState("");
+  const handleUseHint = (hintText: string) => {
+    setAnswerVariant("hint");
+    setAnswerMessage(hintText);
+    setShowHintDialog(false); // close the dialog
+  };
 
   return (
     <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">
@@ -26,13 +36,16 @@ const HomePage = () => {
           value={answer}
           onChange={setAnswer}
           onHint={() => setShowHintDialog(true)}
-          onSubmit={() => console.log("Submit")}
-          variant="default"
-          message="Hint – This shows the hint the user has selected"
+          onSubmit={() => console.log("Submit answer")}
+          variant={answerVariant}
+          message={answerMessage}
         />
+
+        {/* The dialog for hints */}
         <UseHintDialog
           isOpen={showHintDialog}
           onClose={() => setShowHintDialog(false)}
+          onUseHint={handleUseHint} // pass parent callback
         />
       </main>
 

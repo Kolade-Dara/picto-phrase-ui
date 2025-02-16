@@ -6,15 +6,16 @@ import UseHintItem from "./UseHintItem";
 interface UseHintDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  onUseHint: (hintText: string) => void;
 }
 
-const UseHintDialog: FC<UseHintDialogProps> = ({ isOpen, onClose }) => {
+const UseHintDialog: FC<UseHintDialogProps> = ({
+  isOpen,
+  onClose,
+  onUseHint,
+}) => {
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      {/* 
-        By default, shadcn/ui shows a close icon in the corner, 
-        but we’ll hide it if you prefer your custom Header’s back button. 
-      */}
       <DialogContent className="max-w-md p-0">
         {/* Custom Header inside the dialog */}
         <Header
@@ -28,19 +29,25 @@ const UseHintDialog: FC<UseHintDialogProps> = ({ isOpen, onClose }) => {
             hintName="Hint"
             description="You get a brief description of what the hint does"
             cost={200}
-            onUse={() => console.log("Hint #1 used")}
+            onUse={() =>
+              onUseHint("You get a brief description of what the hint does")
+            }
           />
           <UseHintItem
             hintName="Hint"
             description="You get a brief description of what the hint does"
             cost={200}
-            onUse={() => console.log("Hint #2 used")}
+            onUse={() =>
+              onUseHint("You get a brief description of what the hint does")
+            }
           />
           <UseHintItem
             hintName="Hint"
             description="You get a brief description of what the hint does"
             cost={200}
-            onUse={() => console.log("Hint #3 used")}
+            onUse={() =>
+              onUseHint("You get a brief description of what the hint does")
+            }
           />
         </div>
       </DialogContent>
