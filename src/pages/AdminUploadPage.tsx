@@ -53,7 +53,7 @@ const AdminUploadPage = () => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-4">
+    <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">
       <h1 className="text-2xl font-bold mb-6">
         Admin Dashboard - Upload Puzzle
       </h1>
