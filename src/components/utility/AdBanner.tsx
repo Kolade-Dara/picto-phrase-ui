@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Button } from "@/components/ui/button"; // Adjust the import to your Button's location
 
 interface AdBannerProps {

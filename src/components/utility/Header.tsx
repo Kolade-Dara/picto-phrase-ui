@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { ArrowLeft } from "lucide-react"; // or any icon you prefer
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 interface HeaderProps {
