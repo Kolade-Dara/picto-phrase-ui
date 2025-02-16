@@ -3,10 +3,11 @@ import Header from "@/components/utility/Header";
 import PuzzleDisplay from "@/components/utility/PuzzleDisplay";
 import AnswerForm from "@/components/utility/AnswerForm";
 import AdBanner from "@/components/utility/AdBanner";
-
+import UseHintDialog from "@/components/utility/UseHintDialog";
 const HomePage = () => {
   // Manage the answer state
   const [answer, setAnswer] = useState("");
+  const [showHintDialog, setShowHintDialog] = useState(false);
 
   return (
     <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">
@@ -24,10 +25,14 @@ const HomePage = () => {
         <AnswerForm
           value={answer}
           onChange={setAnswer}
-          onHint={() => console.log("Hint clicked")}
+          onHint={() => setShowHintDialog(true)}
           onSubmit={() => console.log("Submit")}
           variant="default"
           message="Hint – This shows the hint the user has selected"
+        />
+        <UseHintDialog
+          isOpen={showHintDialog}
+          onClose={() => setShowHintDialog(false)}
         />
       </main>
 
