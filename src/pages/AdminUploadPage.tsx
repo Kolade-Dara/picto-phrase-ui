@@ -59,19 +59,19 @@ const AdminUploadPage = () => {
       </h1>
 
       {/* Responsive Layout: Stacked on mobile, side-by-side on md+ */}
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col md:flex-row md:justify-evenly gap-4 w-full">
         {/* Left Side: Image Upload */}
         <div className="md:w-1/2">
-          <div className="border-2 border-dashed rounded-md p-4 text-center">
-            <label className="cursor-pointer">
+          <div className="border-2 border-dashed rounded-md p-4 text-center w-full h-full flex items-center justify-center">
+            <label className="cursor-pointer ">
               {imagePreview ? (
                 <img
                   src={imagePreview}
                   alt="Puzzle Preview"
-                  className="h-auto w-auto min-h-[300px] min-w-[300px] object-cover rounded-md mx-auto"
+                  className="h-auto w-auto min-h-[300px] min-w-[300px] object-cover  rounded-md mx-auto"
                 />
               ) : (
-                <div className="text-gray-400">
+                <div className="text-gray-400 ">
                   <p>Click or Drag &amp; Drop to Upload</p>
                 </div>
               )}
@@ -161,7 +161,7 @@ const AdminUploadPage = () => {
       </div>
 
       {/* Submit Button at the bottom */}
-      <div className="mt-6">
+      <div className="mt-6 w-full">
         <Button onClick={handleReview} className="w-full">
           Review
         </Button>
