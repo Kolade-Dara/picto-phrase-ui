@@ -101,7 +101,7 @@ const AdminUploadPage = () => {
 
           {/* Description Hint */}
           <div className="space-y-2">
-            <label className="font-medium">Description Hint (required)</label>
+            <label className="font-medium">Alt (required)</label>
             <input
               type="text"
               className="border p-2 rounded w-full bg-transparent"
@@ -113,7 +113,7 @@ const AdminUploadPage = () => {
 
           {/* Character Hint */}
           <div className="space-y-2">
-            <label className="font-medium">Character Hint (required)</label>
+            <label className="font-medium">Hint (required)</label>
             <input
               type="text"
               className="border p-2 rounded w-full bg-transparent"

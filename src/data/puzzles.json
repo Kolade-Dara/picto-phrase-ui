@@ -1,0 +1,26 @@
+[
+    {
+      "url": "public/images/puzzles/Misunderstood.webp",
+      "alt": "The word 'Mis' appears beneath 'Stood', visually creating the phrase 'Misunderstood'.",
+      "answer": "Misunderstood",
+      "hint": "A wordplay where 'stood' is on top, and 'mis' is placed below, forming a common phrase.",
+      "difficulty": "Medium",
+      "category": "Phrase"
+    },
+    {
+        "url": "public/images/puzzles/believes.webp",
+      "alt": "An image of a bee followed by blowing leaves.",
+      "answer": "Believes",
+      "hint": "A buzzing insect followed by leaves being carried by the wind-think about how they sound when put together.",
+      "difficulty": "Medium",
+      "category": "Words & Concepts"
+    },
+    {
+        "url": "public/images/puzzles/believes.webp",
+      "alt": "An image of a bee followed by blowing leaves.",
+      "answer": "Believes",
+      "hint": "A buzzing insect followed by leaves being carried by the wind-think about how they sound when put together.",
+      "difficulty": "Medium",
+      "category": "Words & Concepts"
+    }
+  ]
