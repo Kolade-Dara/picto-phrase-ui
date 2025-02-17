@@ -14,7 +14,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
+    <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">
       <h2 className="text-2xl font-bold mb-4">Login</h2>
       <form onSubmit={handleLogin} className="space-y-4">
         <div>

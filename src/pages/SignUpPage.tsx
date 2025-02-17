@@ -32,9 +32,30 @@ const SignUpPage = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
+    <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">
       <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="border-2 border-dashed rounded-md p-4 text-center w-full h-full flex items-center justify-center">
+          <label className="cursor-pointer ">
+            {imagePreview ? (
+              <img
+                src={imagePreview}
+                alt="Puzzle Preview"
+                className="h-auto w-auto min-h-[300px] min-w-[300px] object-cover  rounded-md mx-auto"
+              />
+            ) : (
+              <div className="text-gray-400 ">
+                <p>Click or Drag &amp; Drop to Upload profile image</p>
+              </div>
+            )}
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleImageChange}
+            />
+          </label>
+        </div>
         <div>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -75,27 +96,7 @@ const SignUpPage = () => {
             required
           />
         </div>
-        <div className="border-2 border-dashed rounded-md p-4 text-center w-full h-full flex items-center justify-center">
-          <label className="cursor-pointer ">
-            {imagePreview ? (
-              <img
-                src={imagePreview}
-                alt="Puzzle Preview"
-                className="h-auto w-auto min-h-[300px] min-w-[300px] object-cover  rounded-md mx-auto"
-              />
-            ) : (
-              <div className="text-gray-400 ">
-                <p>Click or Drag &amp; Drop to Upload</p>
-              </div>
-            )}
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleImageChange}
-            />
-          </label>
-        </div>
+
         <Button type="submit">Sign Up</Button>
       </form>
       <div className="mt-4 text-center">
