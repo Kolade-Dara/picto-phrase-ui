@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/select";
 
 // Dummy list of categories
-const ALL_CATEGORIES = ["Sports", "Movies", "Music", "Food", "Travel"];
+const ALL_CATEGORIES = ["Books", "General", "Music", "Travel"];
 
 const AdminUploadPage = () => {
   // Local state
