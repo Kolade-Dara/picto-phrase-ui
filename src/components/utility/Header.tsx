@@ -2,6 +2,11 @@ import { Link } from "react-router-dom";
 import { FC } from "react";
 import { ArrowLeft } from "lucide-react"; // or any icon you prefer
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { authStatus } from "@/redux/slices/authSlice";
+import { useAppSelector } from "@/redux/storehooks";
+import { useNavigate } from "react-router-dom";
+import { Button } from "../ui/button";
+
 interface HeaderProps {
   title?: string;
   showBackButton?: boolean;
@@ -23,6 +28,12 @@ const Header: FC<HeaderProps> = ({
   showAvatar = false,
   avatarUrl,
 }) => {
+
+  const user = useAppSelector((state) => authStatus(state));
+  let image= user.authenticated ? `${import.meta.env.VITE_BASE_URL + user.user_details.image}` : '';
+
+  const navigate = useNavigate();
+
   return (
     <header className="flex items-center justify-between p-4 w-full">
       {/* Left Section */}
@@ -52,16 +63,20 @@ const Header: FC<HeaderProps> = ({
       </Link>
 
       {/* Right Section */}
-      <div className="flex w-16 items-center justify-end">
-        {showAvatar && (
-          <Link to="/profile" aria-label="User Profile">
-            <Avatar className="h-8 w-8">
-              <AvatarImage src={avatarUrl} />
-              <AvatarFallback>?</AvatarFallback>
-            </Avatar>
-          </Link>
-        )}
-      </div>
+      {user.authenticated ? (
+        <div className="flex w-16 items-center justify-end">
+          {showAvatar && (
+            <Link to="/profile" aria-label="User Profile">
+              <Avatar className="h-8 w-8">
+                <AvatarImage src={image} />
+                <AvatarFallback>?</AvatarFallback>
+              </Avatar>
+            </Link>
+          )}
+        </div>
+      ):(
+        <Button onClick={()=>navigate('/login')}>Login</Button>
+      )}
     </header>
   );
 };

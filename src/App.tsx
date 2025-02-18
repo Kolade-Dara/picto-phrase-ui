@@ -5,9 +5,19 @@ import BuyHintCoinsPage from "./pages/BuyHintCoinsPage";
 import AdminUploadPage from "./pages/AdminUploadPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
+import { useAppDispatch } from "./redux/storehooks";
+import { login } from "./redux/slices/authSlice";
 
 const App = () => {
-  console.log("App render");
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
+
+  const dispatch = useAppDispatch();
+
+  if (user){
+    dispatch(login(user));
+  }
+
   return (
     <div>
       <Routes>

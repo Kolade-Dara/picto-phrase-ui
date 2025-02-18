@@ -3,14 +3,51 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "@/redux/storehooks";
+import { login } from "@/redux/slices/authSlice";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleLogin = (e: React.FormEvent) => {
+  const dispatch = useAppDispatch();
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Validate and handle login logic here.
+    setLoading(true);
+
+    const payload = {
+      username,
+      password
+    }
+
+    const url = `${import.meta.env.VITE_BASE_URL}/login`;
+    const config = {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    const response = await fetch(url, config)
+      .then((data) => data.json())
+      .catch((err) => err);
+
+
+    if (response.success) {
+      setUsername('');
+      setPassword('');
+      dispatch(login(response.user))
+      window.location.href = '/profile';
+    } else {
+      setError(response.message);
+    }
+
+    setLoading(false);
+
   };
 
   return (
@@ -18,12 +55,12 @@ const LoginPage = () => {
       <h2 className="text-2xl font-bold mb-4">Login</h2>
       <form onSubmit={handleLogin} className="space-y-4">
         <div>
-          <Label htmlFor="loginEmail">Email</Label>
+          <Label htmlFor="LoginUsername">Username</Label>
           <Input
-            id="loginEmail"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            id="LoginUsername"
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
@@ -37,7 +74,12 @@ const LoginPage = () => {
             required
           />
         </div>
-        <Button type="submit">Login</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? 'loading' : 'Login'}
+        </Button>
+        {error && (
+          <div>{error}</div>
+        )}
       </form>
       <div className="mt-4 text-center">
         <span>Don't have an account? </span>
