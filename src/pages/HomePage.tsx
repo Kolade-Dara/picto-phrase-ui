@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Header from "@/components/utility/Header";
 
 import AdBanner from "@/components/utility/AdBanner";
@@ -7,8 +6,6 @@ import RebusPuzzle from "@/components/utility/RebusPuzzle";
 
 const HomePage = () => {
   // Manage the answer state
-
-  const [showHintDialog, setShowHintDialog] = useState(false);
 
   // const handleUseHint = (hintText: string) => {
   //   setAnswerVariant("hint");

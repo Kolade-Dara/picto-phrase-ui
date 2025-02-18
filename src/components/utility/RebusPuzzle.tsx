@@ -1,4 +1,3 @@
-// src/components/utility/RebusPuzzle.tsx
 import React, { useState, useEffect } from "react";
 import puzzles from "@/data/puzzles.json";
 import { Button } from "@/components/ui/button";
@@ -6,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import UseHintDialog from "./UseHintDialog";
 
 const RebusPuzzle = () => {
-
   const [puzzle, setPuzzle] = useState({
     url: "",
     alt: "",
@@ -16,12 +14,12 @@ const RebusPuzzle = () => {
     answer: "",
   });
   const [answer, setAnswer] = useState("");
-  const [variant, setVariant] = useState<"default" | "hint" | "error" | "correct">(
-    "default"
-  );
+  const [variant, setVariant] = useState<
+    "default" | "hint" | "error" | "correct"
+  >("default");
   const [actionText, setActionText] = useState("Submit");
   const [message, setMessage] = useState("");
-
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Pick a random puzzle on mount
   const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
@@ -37,8 +35,20 @@ const RebusPuzzle = () => {
     if (answer.trim().toLowerCase() === puzzle.answer.toLowerCase()) {
       setVariant("correct");
       setMessage("Correct!");
-      setPuzzle(randomPuzzle);
-      // Proceed to next puzzle or any other action here
+      setIsTransitioning(true);
+
+      setTimeout(() => {
+        setPuzzle(randomPuzzle);
+        setAnswer("");
+        setActionText("Submit");
+        setVariant("default");
+        setMessage("");
+
+        // Reset transition after new puzzle is loaded
+        setTimeout(() => {
+          setIsTransitioning(false);
+        }, 50);
+      }, 1000);
     } else {
       setVariant("error");
       setMessage("Incorrect.");
@@ -52,13 +62,17 @@ const RebusPuzzle = () => {
     setVariant("hint");
     setMessage(puzzle.descriptionHint);
     setIsHintDialogOpen(false);
-  }
+  };
 
   return (
     <>
       <div className="flex flex-col items-center gap-4">
         {/* Puzzle display */}
-        <div className=" h-full max-h-96 w-full max-w-96 rounded-[24px] object-contain">
+        <div
+          className={`h-full max-h-96 w-full max-w-96 rounded-[24px] object-contain transition-opacity duration-300 ease-in-out ${
+            isTransitioning ? "opacity-0" : "opacity-100"
+          }`}
+        >
           <img
             src={puzzle.url}
             alt={puzzle.alt}
@@ -86,13 +100,15 @@ const RebusPuzzle = () => {
           {message && (
             <p
               className={
-                variant === 'hint' ? "text-gray-400 text-sm" :
-                  variant === "error" ? "text-red-500 text-sm" :
-                    variant === 'correct' ? "text-green-400 text-sm" :
-                      "" // Default case to prevent syntax errors
+                variant === "hint"
+                  ? "text-gray-400 text-sm"
+                  : variant === "error"
+                  ? "text-red-500 text-sm"
+                  : variant === "correct"
+                  ? "text-green-400 text-sm"
+                  : "" // Default case to prevent syntax errors
               }
             >
-
               {message}
             </p>
           )}
@@ -109,7 +125,6 @@ const RebusPuzzle = () => {
         onClose={() => setIsHintDialogOpen(false)}
         showDescriptionHint={() => showDescriptionHint()}
       />
-
     </>
   );
 };
