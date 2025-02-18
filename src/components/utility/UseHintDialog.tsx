@@ -14,6 +14,7 @@ const UseHintDialog: FC<UseHintDialogProps> = ({
   onClose,
   showDescriptionHint,
 }) => {
+
   return (
     <Dialog open={isHintDialogOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md p-0">

@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "@/components/utility/Header";
 
 import AdBanner from "@/components/utility/AdBanner";
-import UseHintDialog from "@/components/utility/UseHintDialog";
+// import UseHintDialog from "@/components/utility/UseHintDialog";
 import RebusPuzzle from "@/components/utility/RebusPuzzle";
 
 const HomePage = () => {
@@ -10,11 +10,11 @@ const HomePage = () => {
 
   const [showHintDialog, setShowHintDialog] = useState(false);
 
-  const handleUseHint = (hintText: string) => {
-    setAnswerVariant("hint");
-    setAnswerMessage(hintText);
-    setShowHintDialog(false); // close the dialog
-  };
+  // const handleUseHint = (hintText: string) => {
+  //   setAnswerVariant("hint");
+  //   setAnswerMessage(hintText);
+  //   setShowHintDialog(false); // close the dialog
+  // };
 
   return (
     <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">
@@ -31,11 +31,11 @@ const HomePage = () => {
         <RebusPuzzle />
 
         {/* The dialog for hints */}
-        <UseHintDialog
+        {/* <UseHintDialog
           isOpen={showHintDialog}
           onClose={() => setShowHintDialog(false)}
           onUseHint={handleUseHint} // pass parent callback
-        />
+        /> */}
       </main>
 
       <div className="mb-8 w-full max-w-md">
