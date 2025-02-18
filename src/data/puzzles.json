@@ -3,7 +3,7 @@
       "url": "public/images/puzzles/Misunderstood.webp",
       "alt": "The word 'Mis' appears beneath 'Stood', visually creating the phrase 'Misunderstood'.",
       "answer": "Misunderstood",
-      "hint": "A wordplay where 'stood' is on top, and 'mis' is placed below, forming a common phrase.",
+      "descriptionHint": "A wordplay where 'stood' is on top, and 'mis' is placed below, forming a common phrase.",
       "difficulty": "Medium",
       "category": "Phrase"
     },
@@ -11,16 +11,16 @@
         "url": "public/images/puzzles/believes.webp",
       "alt": "An image of a bee followed by blowing leaves.",
       "answer": "Believes",
-      "hint": "A buzzing insect followed by leaves being carried by the wind-think about how they sound when put together.",
+      "descriptionHint": "A buzzing insect followed by leaves being carried by the wind-think about how they sound when put together.",
       "difficulty": "Medium",
       "category": "Words & Concepts"
     },
     {
-        "url": "public/images/puzzles/believes.webp",
-      "alt": "An image of a bee followed by blowing leaves.",
-      "answer": "Believes",
-      "hint": "A buzzing insect followed by leaves being carried by the wind-think about how they sound when put together.",
-      "difficulty": "Medium",
-      "category": "Words & Concepts"
+        "url": "public/images/puzzles/Scrambled-Eggs.webp",
+      "alt": "The word 'EGGS' appears with its letters scrambled in different positions.",
+      "answer": "Scrambled Eggs",
+      "descriptionHint": "The letters of a common breakfast food are all mixed up-just like when you cook them.",
+      "difficulty": "Easy",
+      "category": "Food & Drink"
     }
   ]

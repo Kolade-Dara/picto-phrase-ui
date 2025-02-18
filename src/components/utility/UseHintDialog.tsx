@@ -4,50 +4,32 @@ import Header from "@/components/utility/Header"; // Your custom Header with bac
 import UseHintItem from "./UseHintItem";
 
 interface UseHintDialogProps {
-  isOpen: boolean;
+  isHintDialogOpen: boolean;
   onClose: () => void;
-  onUseHint: (hintText: string) => void;
+  showDescriptionHint: () => void;
 }
 
 const UseHintDialog: FC<UseHintDialogProps> = ({
-  isOpen,
+  isHintDialogOpen,
   onClose,
-  onUseHint,
+  showDescriptionHint,
 }) => {
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={isHintDialogOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md p-0">
         {/* Custom Header inside the dialog */}
         <Header
-          title="Buy Hint coins"
+          title="Use Hint"
           onBack={onClose} // Closes the dialog
         />
 
         <div className="p-4 space-y-4">
           {/* Repeat UseHintItem for each hint type */}
           <UseHintItem
-            hintName="Hint"
-            description="You get a brief description of what the hint does"
+            hintName="Description Hint"
+            description="You get a brief description of the puzzle."
             cost={200}
-            onUse={() =>
-              onUseHint("You get a brief description of what the hint does")
-            }
-          />
-          <UseHintItem
-            hintName="Hint"
-            description="You get a brief description of what the hint does"
-            cost={200}
-            onUse={() =>
-              onUseHint("You get a brief description of what the hint does")
-            }
-          />
-          <UseHintItem
-            hintName="Hint"
-            description="You get a brief description of what the hint does"
-            cost={200}
-            onUse={() =>
-              onUseHint("You get a brief description of what the hint does")
-            }
+            onUse={() => showDescriptionHint()}
           />
         </div>
       </DialogContent>

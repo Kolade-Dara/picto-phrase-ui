@@ -1,18 +1,15 @@
 import { useState } from "react";
 import Header from "@/components/utility/Header";
-import PuzzleDisplay from "@/components/utility/PuzzleDisplay";
-import AnswerForm from "@/components/utility/AnswerForm";
+
 import AdBanner from "@/components/utility/AdBanner";
 import UseHintDialog from "@/components/utility/UseHintDialog";
+import RebusPuzzle from "@/components/utility/RebusPuzzle";
+
 const HomePage = () => {
   // Manage the answer state
-  const [answer, setAnswer] = useState("");
 
   const [showHintDialog, setShowHintDialog] = useState(false);
-  const [answerVariant, setAnswerVariant] = useState<
-    "default" | "hint" | "error"
-  >("default");
-  const [answerMessage, setAnswerMessage] = useState("");
+
   const handleUseHint = (hintText: string) => {
     setAnswerVariant("hint");
     setAnswerMessage(hintText);
@@ -31,15 +28,7 @@ const HomePage = () => {
       />
 
       <main className="flex flex-col items-center justify-center p-6 gap-4 [@media(min-width:802px)]:flex-row">
-        <PuzzleDisplay puzzleUrl="/images/Pictor grams.png" altText="Puzzle" />
-        <AnswerForm
-          value={answer}
-          onChange={setAnswer}
-          onHint={() => setShowHintDialog(true)}
-          onSubmit={() => console.log("Submit answer")}
-          variant={answerVariant}
-          message={answerMessage}
-        />
+        <RebusPuzzle />
 
         {/* The dialog for hints */}
         <UseHintDialog
