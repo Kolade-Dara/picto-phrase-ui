@@ -1,6 +1,6 @@
 [
     {
-      "url": "public/images/puzzles/Misunderstood.webp",
+      "url": "/images/puzzles/Misunderstood.webp",
       "alt": "The word 'Mis' appears beneath 'Stood', visually creating the phrase 'Misunderstood'.",
       "answer": "Misunderstood",
       "descriptionHint": "A wordplay where 'stood' is on top, and 'mis' is placed below, forming a common phrase.",
@@ -8,7 +8,7 @@
       "category": "Phrase"
     },
     {
-        "url": "public/images/puzzles/believes.webp",
+        "url": "/images/puzzles/believes.webp",
       "alt": "An image of a bee followed by blowing leaves.",
       "answer": "Believes",
       "descriptionHint": "A buzzing insect followed by leaves being carried by the wind-think about how they sound when put together.",
@@ -16,7 +16,7 @@
       "category": "Words & Concepts"
     },
     {
-        "url": "public/images/puzzles/Scrambled-Eggs.webp",
+        "url": "/images/puzzles/Scrambled-Eggs.webp",
       "alt": "The word 'EGGS' appears with its letters scrambled in different positions.",
       "answer": "Scrambled Eggs",
       "descriptionHint": "The letters of a common breakfast food are all mixed up-just like when you cook them.",
