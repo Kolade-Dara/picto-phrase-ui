@@ -19,7 +19,7 @@ const AdminUploadPage = () => {
 
   const [answer, setAnswer] = useState("");
   const [descHint, setDescHint] = useState("");
-  const [charHint, setCharHint] = useState("");
+  // const [charHint, setCharHint] = useState("");
 
   const [difficulty, setDifficulty] = useState("Easy");
   const [category, setCategory] = useState("");
@@ -34,14 +34,13 @@ const AdminUploadPage = () => {
       setImagePreview(URL.createObjectURL(file));
     }
   };
-  console.log(puzzleImage)
 
   // Check if all required fields are filled
   const allFieldsFilled =
     puzzleImage &&
     answer.trim() &&
     descHint.trim() &&
-    charHint.trim() &&
+    // charHint.trim() &&
     category.trim();
 
   // Show the review dialog if fields are valid
@@ -113,7 +112,7 @@ const AdminUploadPage = () => {
           </div>
 
           {/* Character Hint */}
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <label className="font-medium">Hint (required)</label>
             <input
               type="text"
@@ -122,7 +121,7 @@ const AdminUploadPage = () => {
               value={charHint}
               onChange={(e) => setCharHint(e.target.value)}
             />
-          </div>
+          </div> */}
 
           {/* Difficulty */}
           <div className="space-y-2">
@@ -172,10 +171,11 @@ const AdminUploadPage = () => {
       <ReviewDialog
         isOpen={showReview}
         onClose={() => setShowReview(false)}
-        puzzleImage={imagePreview}
+        puzzleImage={puzzleImage}
+        imagePreview={imagePreview}
         answer={answer}
         descHint={descHint}
-        charHint={charHint}
+        // charHint={charHint}
         difficulty={difficulty}
         categories={category}
       />

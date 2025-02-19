@@ -1,14 +1,8 @@
 import Header from "@/components/utility/Header";
-
 import AdBanner from "@/components/utility/AdBanner";
-// import UseHintDialog from "@/components/utility/UseHintDialog";
 import RebusPuzzle from "@/components/utility/RebusPuzzle";
-import { useAppSelector } from "@/redux/storehooks";
-import { authStatus } from "@/redux/slices/authSlice";
 
 const HomePage = () => {
-  
-  // const user = useAppSelector((state) => authStatus(state));
 
   return (
     <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">

@@ -14,8 +14,11 @@ const SignUpPage = () => {
   const [imagePreview, setImagePreview] = useState<string>("");
 
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    setLoading(true);
+
     e.preventDefault();
     const formData = new FormData();
     formData.append("email", email);
@@ -43,6 +46,7 @@ const SignUpPage = () => {
     } else {
       setError(response.message);
     }
+    setLoading(false);
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -123,7 +127,9 @@ const SignUpPage = () => {
           <div>{error}</div>
         }
 
-        <Button type="submit">Sign Up</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? 'Signing Up' : 'Sign Up'}
+        </Button>
       </form>
       <div className="mt-4 text-center">
         <span>Already have an account? </span>

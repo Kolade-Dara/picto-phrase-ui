@@ -16,6 +16,7 @@ const UseHintItem: FC<UseHintItemProps> = ({
   coinIconUrl = "/images/hintcoin.png",
   onUse,
 }) => {
+
   return (
     <div className="flex flex-col rounded-xl bg-white p-4 shadow-sm h-auto w-full gap-2">
       <div className="flex items-center justify-between">
