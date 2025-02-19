@@ -34,6 +34,7 @@ const AdminUploadPage = () => {
       setImagePreview(URL.createObjectURL(file));
     }
   };
+  console.log(puzzleImage)
 
   // Check if all required fields are filled
   const allFieldsFilled =

@@ -13,6 +13,8 @@ const SignUpPage = () => {
   const [profileImage, setProfileImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>("");
 
+  const [error, setError] = useState(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const formData = new FormData();
@@ -22,7 +24,27 @@ const SignUpPage = () => {
     if (profileImage) {
       formData.append("profileImage", profileImage);
     }
+    const url = `${import.meta.env.VITE_BASE_URL}/register`;
+    const config = {
+      method: 'POST',
+      body: formData,
+      headers: {
+
+      }
+    }
+
+    const response = await fetch(url, config)
+      .then((data) => data.json())
+      .catch((err) => err);
+
+
+    if (response.success) {
+      window.location.href = '/login';
+    } else {
+      setError(response.message);
+    }
   };
+
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -96,6 +118,10 @@ const SignUpPage = () => {
             required
           />
         </div>
+
+        {error && 
+          <div>{error}</div>
+        }
 
         <Button type="submit">Sign Up</Button>
       </form>
