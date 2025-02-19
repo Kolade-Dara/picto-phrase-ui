@@ -41,7 +41,7 @@ const SignUpPage = () => {
               <img
                 src={imagePreview}
                 alt="Puzzle Preview"
-                className="h-auto w-auto min-h-[300px] min-w-[300px] object-cover  rounded-md mx-auto"
+                className="h-auto w-auto max-h-[300px] max-w-[300px] object-cover  rounded-full mx-auto"
               />
             ) : (
               <div className="text-gray-400 ">
