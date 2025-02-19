@@ -12,12 +12,14 @@ const ProfilePage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  let image= user.authenticated ? `${import.meta.env.VITE_BASE_URL + user.user_details.image}` : '';
+  const image = user.authenticated
+    ? `${import.meta.env.VITE_BASE_URL + user.user_details.image}`
+    : "";
 
-  const handleLogout = ()=>{
+  const handleLogout = () => {
     dispatch(logout());
-    navigate('/login');
-  }
+    navigate("/login");
+  };
 
   return (
     <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">
@@ -38,16 +40,9 @@ const ProfilePage = () => {
         />
       </div>
       <div className="flex flex-col items-center w-full max-w-md">
-        <RankCard
-          rank="Advanced"
-          iconUrl="/images/Advanced.png"
-          percentage={70}
-          answered={1098}
-          total={2333}
-          gradientClass="bg-gradient-to-b from-[#FFF894FF] to-[#C6647BFF]"
-        />
+        <RankCard answered={0} total={100} />
       </div>
-      <Button onClick={()=>handleLogout()}>Logout</Button>
+      <Button onClick={() => handleLogout()}>Logout</Button>
       <div className="mb-8 w-full max-w-md">
         <AdBanner
           imageUrl="/images/cocacola-banner.jpg"
