@@ -28,9 +28,10 @@ const Header: FC<HeaderProps> = ({
   showAvatar = false,
   avatarUrl,
 }) => {
-
   const user = useAppSelector((state) => authStatus(state));
-  let image= user.authenticated ? `${import.meta.env.VITE_BASE_URL + user.user_details.image}` : '';
+  let image = user.authenticated
+    ? `${import.meta.env.VITE_BASE_URL + user.user_details.image}`
+    : "";
 
   const navigate = useNavigate();
 
@@ -74,8 +75,8 @@ const Header: FC<HeaderProps> = ({
             </Link>
           )}
         </div>
-      ):(
-        <Button onClick={()=>navigate('/login')}>Login</Button>
+      ) : (
+        <Button onClick={() => navigate("/login")}>Login</Button>
       )}
     </header>
   );
