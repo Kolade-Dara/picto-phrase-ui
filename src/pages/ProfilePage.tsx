@@ -12,7 +12,6 @@ const ProfilePage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-
   const image = user.authenticated
     ? `${import.meta.env.VITE_BASE_URL + user.user_details.image}`
     : "";
@@ -41,7 +40,7 @@ const ProfilePage = () => {
         />
       </div>
       <div className="flex flex-col items-center w-full max-w-md">
-        <RankCard answered={user.user_details.games_won} total={100} />
+        <RankCard answered={user.user_details.games_won} total={34} />
       </div>
       <Button onClick={() => handleLogout()}>Logout</Button>
       <div className="mb-8 w-full max-w-md">
