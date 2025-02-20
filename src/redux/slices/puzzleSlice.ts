@@ -7,7 +7,7 @@ export interface PuzzleDetails {
     id: number;
     hint: string;
     difficulty: string;
-    answer: string
+    // answer: string
 }
 
 interface PuzzleState {

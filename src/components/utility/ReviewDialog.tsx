@@ -35,6 +35,8 @@ const ReviewDialog: FC<ReviewDialogProps> = ({
   categories,
 }) => {
 
+  let token = localStorage.getItem('token') || '';
+
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
@@ -55,7 +57,7 @@ const ReviewDialog: FC<ReviewDialogProps> = ({
       method: "POST",
       body: formData,
       headers: {
-
+        'Authorization': `Token ${token}`
       }
     };
 

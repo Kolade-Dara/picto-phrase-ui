@@ -14,7 +14,7 @@ const RebusPuzzle = () => {
     id: 0,
     hint: '',
     difficulty: '',
-    answer: ''
+    // answer: ''
   });
 
   const [answer, setAnswer] = useState("");
@@ -28,9 +28,10 @@ const RebusPuzzle = () => {
   const [isHintDialogOpen, setIsHintDialogOpen] = useState(false);
   const onHint = () => setIsHintDialogOpen(true);
 
+  let token = localStorage.getItem('token') || '';
 
-  useEffect(()=>{
-    if (gamePuzzles.length){
+  useEffect(() => {
+    if (gamePuzzles.length) {
       const randomPuzzle = gamePuzzles[Math.floor(Math.random() * gamePuzzles.length)];
       setSelectedPuzzle(randomPuzzle);
     }
@@ -63,6 +64,41 @@ const RebusPuzzle = () => {
   //   }
   // };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    let id = selectedPuzzle.id;
+    const payload = {
+      // id,
+      answer
+    }
+
+    const url = `${import.meta.env.VITE_BASE_URL}/submit/${id}`;
+    const config = {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${token}`
+      }
+    };
+
+    const response = await fetch(url, config)
+      .then((data) => data.json())
+      .catch((err) => err);
+
+    if (response.success) {
+      if(response.message){
+        window.location.reload();
+      }else{
+        setMessage('Incorrect! Try Again')
+      }
+    } else {
+
+    }
+
+  }
+
   if (!gamePuzzles) return <div>Loading...</div>;
 
   const showDescriptionHint = () => {
@@ -87,7 +123,7 @@ const RebusPuzzle = () => {
                 className="w-full h-full object-contain"
               />
             </div>
-    
+
             {/* Answer form */}
             <div className="flex flex-col items-center space-y-3 w-full">
               {/* Input + Hint Button */}
@@ -103,7 +139,7 @@ const RebusPuzzle = () => {
                   Hint
                 </Button>
               </div>
-    
+
               {/* Optional message area for hint or error */}
               {message && (
                 <p
@@ -120,21 +156,21 @@ const RebusPuzzle = () => {
                   {message}
                 </p>
               )}
-    
+
               {/* Main action button */}
-              <Button onClick={() => { }} className="w-full max-w-sm">
+              <Button onClick={handleSubmit} className="w-full max-w-sm" disabled={answer === ''}>
                 {actionText}
               </Button>
             </div>
           </div>
-    
+
           <UseHintDialog
             isHintDialogOpen={isHintDialogOpen}
             onClose={() => setIsHintDialogOpen(false)}
             showDescriptionHint={() => showDescriptionHint()}
           />
         </>
-      ): 'New Puzzles Coming Soon'}
+      ) : 'New Puzzles Coming Soon'}
     </>
   );
 };

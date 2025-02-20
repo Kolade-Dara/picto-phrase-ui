@@ -17,8 +17,9 @@ const App = () => {
 
   const dispatch = useAppDispatch();
 
+  let token = localStorage.getItem('token') || '';
   if (user) {
-    dispatch(login(user));
+    dispatch(login({ user: user, token: token }));
   }
 
   const getGames = async () => {
@@ -26,7 +27,7 @@ const App = () => {
     const config = {
       method: "GEt",
       headers: {
-
+        'Authorization': `Token ${token}`
       }
     };
 

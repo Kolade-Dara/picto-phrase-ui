@@ -40,7 +40,7 @@ const LoginPage = () => {
     if (response.success) {
       setUsername('');
       setPassword('');
-      dispatch(login(response.user))
+      dispatch(login({ user: response.user, token: response.token }))
       window.location.href = '/profile';
     } else {
       setError(response.message);
