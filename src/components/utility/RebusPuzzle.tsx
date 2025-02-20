@@ -9,11 +9,11 @@ import { puzzles, PuzzleDetails } from "@/redux/slices/puzzleSlice";
 const RebusPuzzle = () => {
   const gamePuzzles = useAppSelector((state) => puzzles(state));
   const [selectedPuzzle, setSelectedPuzzle] = useState<PuzzleDetails>({
-    image: '',
-    category: '',
+    image: "",
+    category: "",
     id: 0,
-    hint: '',
-    difficulty: '',
+    hint: "",
+    difficulty: "",
     // answer: ''
   });
 
@@ -28,15 +28,15 @@ const RebusPuzzle = () => {
   const [isHintDialogOpen, setIsHintDialogOpen] = useState(false);
   const onHint = () => setIsHintDialogOpen(true);
 
-  let token = localStorage.getItem('token') || '';
+  const token = localStorage.getItem("token") || "";
 
   useEffect(() => {
     if (gamePuzzles.length) {
-      const randomPuzzle = gamePuzzles[Math.floor(Math.random() * gamePuzzles.length)];
+      const randomPuzzle =
+        gamePuzzles[Math.floor(Math.random() * gamePuzzles.length)];
       setSelectedPuzzle(randomPuzzle);
     }
-  }, [gamePuzzles])
-
+  }, [gamePuzzles]);
 
   // const handleSubmit = (e: React.FormEvent) => {
   //   e.preventDefault();
@@ -67,20 +67,20 @@ const RebusPuzzle = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    let id = selectedPuzzle.id;
+    const id = selectedPuzzle.id;
     const payload = {
       // id,
-      answer
-    }
+      answer,
+    };
 
     const url = `${import.meta.env.VITE_BASE_URL}/submit/${id}`;
     const config = {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Token ${token}`
-      }
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
     };
 
     const response = await fetch(url, config)
@@ -88,16 +88,15 @@ const RebusPuzzle = () => {
       .catch((err) => err);
 
     if (response.success) {
-      if(response.message){
+      if (response.message) {
         window.location.reload();
-      }else{
-        setMessage('Incorrect! Try Again')
+      } else {
+        setMessage("Incorrect! Try Again");
       }
     } else {
-
+      console.log(response);
     }
-
-  }
+  };
 
   if (!gamePuzzles) return <div>Loading...</div>;
 
@@ -114,13 +113,14 @@ const RebusPuzzle = () => {
           <div className="flex flex-col items-center gap-4">
             {/* Puzzle display */}
             <div
-              className={`h-full max-h-96 w-full max-w-96 rounded-[24px] object-contain transition-opacity duration-300 ease-in-out ${isTransitioning ? "opacity-0" : "opacity-100"
-                }`}
+              className={`h-full max-h-96 w-full max-w-96 rounded-[24px] object-contain transition-opacity duration-300 ease-in-out ${
+                isTransitioning ? "opacity-0" : "opacity-100"
+              }`}
             >
               <img
                 src={import.meta.env.VITE_BASE_URL + selectedPuzzle?.image}
-                alt='rebus game'
-                className="w-full h-full object-contain"
+                alt="rebus game"
+                className="w-full h-full object-contain max-w-80 max-h-80 rounded-[24px]"
               />
             </div>
 
@@ -147,10 +147,10 @@ const RebusPuzzle = () => {
                     variant === "hint"
                       ? "text-gray-400 text-sm"
                       : variant === "error"
-                        ? "text-red-500 text-sm"
-                        : variant === "correct"
-                          ? "text-green-400 text-sm"
-                          : "" // Default case to prevent syntax errors
+                      ? "text-red-500 text-sm"
+                      : variant === "correct"
+                      ? "text-green-400 text-sm"
+                      : "" // Default case to prevent syntax errors
                   }
                 >
                   {message}
@@ -158,7 +158,11 @@ const RebusPuzzle = () => {
               )}
 
               {/* Main action button */}
-              <Button onClick={handleSubmit} className="w-full max-w-sm" disabled={answer === ''}>
+              <Button
+                onClick={handleSubmit}
+                className="w-full max-w-sm"
+                disabled={answer === ""}
+              >
                 {actionText}
               </Button>
             </div>
@@ -170,7 +174,9 @@ const RebusPuzzle = () => {
             showDescriptionHint={() => showDescriptionHint()}
           />
         </>
-      ) : 'New Puzzles Coming Soon'}
+      ) : (
+        "New Puzzles Coming Soon"
+      )}
     </>
   );
 };
