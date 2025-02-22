@@ -15,6 +15,7 @@ const RebusPuzzle = () => {
     hint: "",
     difficulty: "",
     // answer: ''
+    
   });
 
   const [answer, setAnswer] = useState("");
