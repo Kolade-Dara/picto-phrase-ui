@@ -12,6 +12,8 @@ const SignUpPage = () => {
 
   const [profileImage, setProfileImage] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -29,20 +31,17 @@ const SignUpPage = () => {
     }
     const url = `${import.meta.env.VITE_BASE_URL}/register`;
     const config = {
-      method: 'POST',
+      method: "POST",
       body: formData,
-      headers: {
-
-      }
-    }
+      headers: {},
+    };
 
     const response = await fetch(url, config)
       .then((data) => data.json())
       .catch((err) => err);
 
-
     if (response.success) {
-      window.location.href = '/login';
+      window.location.href = "/login";
     } else {
       setError(response.message);
     }
@@ -52,6 +51,16 @@ const SignUpPage = () => {
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.webp)$/i;
+      if (!allowedExtensions.exec(file.name)) {
+        setMessage(
+          "Invalid file type. Only PNG, JPEG, WEBP, and JPG are allowed."
+        );
+        setProfileImage(null);
+        setImagePreview("");
+        return;
+      }
+      setMessage(null);
       setProfileImage(file);
       setImagePreview(URL.createObjectURL(file));
     }
@@ -61,27 +70,31 @@ const SignUpPage = () => {
     <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">
       <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="border-2 border-dashed rounded-md p-4 text-center w-full h-full flex items-center justify-center">
-          <label className="cursor-pointer ">
-            {imagePreview ? (
-              <img
-                src={imagePreview}
-                alt="Puzzle Preview"
-                className="h-auto w-auto max-h-[300px] max-w-[300px] object-cover  rounded-full mx-auto"
+        <div>
+          <div className="border-2 border-dashed rounded-md p-4 text-center w-full h-full flex items-center justify-center">
+            <label className="cursor-pointer ">
+              {imagePreview ? (
+                <img
+                  src={imagePreview}
+                  alt="Puzzle Preview"
+                  className="h-auto w-auto max-h-[300px] max-w-[300px] object-cover  rounded-full mx-auto"
+                />
+              ) : (
+                <div className="text-gray-400 ">
+                  <p>Click or Drag &amp; Drop to Upload profile image</p>
+                </div>
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleImageChange}
               />
-            ) : (
-              <div className="text-gray-400 ">
-                <p>Click or Drag &amp; Drop to Upload profile image</p>
-              </div>
-            )}
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={handleImageChange}
-            />
-          </label>
+            </label>
+          </div>
+          <p className="text-red-500">{message}</p>
         </div>
+
         <div>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -92,25 +105,37 @@ const SignUpPage = () => {
             required
           />
         </div>
-        <div>
+        <div className="relative">
           <Label htmlFor="password">Password</Label>
           <Input
             id="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <span
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer mt-3"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? "🙈" : "👁️"}
+          </span>
         </div>
-        <div>
+        <div className="relative">
           <Label htmlFor="confirm">Confirm Password</Label>
           <Input
             id="confirm"
-            type="password"
+            type={showPassword ? "text" : "password"}
             value={confirm}
             onChange={(e) => setConfirm(e.target.value)}
             required
           />
+          <span
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer mt-3"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? "🙈" : "👁️"}
+          </span>
         </div>
         <div>
           <Label htmlFor="nickname">Nickname</Label>
@@ -123,12 +148,10 @@ const SignUpPage = () => {
           />
         </div>
 
-        {error && 
-          <div>{error}</div>
-        }
+        {error && <div>{error}</div>}
 
         <Button type="submit" disabled={loading}>
-          {loading ? 'Signing Up' : 'Sign Up'}
+          {loading ? "Signing Up" : "Sign Up"}
         </Button>
       </form>
       <div className="mt-4 text-center">

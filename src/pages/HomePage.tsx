@@ -3,7 +3,6 @@ import AdBanner from "@/components/utility/AdBanner";
 import RebusPuzzle from "@/components/utility/RebusPuzzle";
 
 const HomePage = () => {
-
   return (
     <div className="flex flex-col items-center min-h-screen min-w-screen p-4 justify-start gap-6 bg-slate-100">
       <Header
